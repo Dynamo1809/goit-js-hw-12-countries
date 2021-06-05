@@ -15,8 +15,13 @@ refs.searchInput.addEventListener('input', debounce(onInputSearch, 500));
 
 function onInputSearch(e) {
   resetPage();
-
+  
   const serchQuery = e.target.value;
+
+  if(serchQuery.trim() === '') {
+    return ;
+  }
+  
   API.fetchCounties(serchQuery)
     .then(createCountriesMarkup)
     .catch(onFetchError);
